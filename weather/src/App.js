@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Search from './components/Search.js';
-
+import WeatherList from './components/WeatherList'
 class App extends Component {
   constructor(){
     super();
@@ -35,7 +35,7 @@ parseResults(data){
     city: data.city.name, 
     coordinates: data.city.coord, 
     country:data.city.country,
-    could: listResult.coulds,
+    could: listResult.coulds?listResult.coulds : 'not available' ,
     deg: listResult.deg,
     humidity: listResult.humidity,
     rain:listResult.rain,
@@ -64,11 +64,18 @@ handleSubmit(e){
 
 ViewRender(){
   if (this.state.mode === 'search'){
-      return( <Search
-                input={this.props.input}
-                handleChange={this.handleChange.bind(this)}
-                handleSubmit={this.handleSubmit.bind(this)}
-              /> ) 
+      return( 
+      <div className="container">
+          <Search
+                  input={this.props.input}
+                  handleChange={this.handleChange.bind(this)}
+                  handleSubmit={this.handleSubmit.bind(this)}
+                />
+          <WeatherList
+            weatherResults={this.state.weatherResult}
+          />
+        </div>
+              ) 
   }else{
       return(<div> normal view</div>)
   }
