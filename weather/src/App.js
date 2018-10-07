@@ -17,30 +17,32 @@ class App extends Component {
 
 getWeather(){
   let param = this.state.city
-  console.log(typeof param);
     fetch(`http://api.openweathermap.org/data/2.5/forecast/daily?q=${param}&cnt=10&APPID=1716693f031095273307c498a9486548`,{
         method: 'GET'
       }).then((response)=> 
        response.json()
       ).then((data)=>
         this.setState({
-        weatherResult:this.parseResults(data)
-        },()=>{console.log(this.state.weatherResult)})
+          // parsed results enclosed because it needs to be an array
+        weatherResult:[this.parseResults(data)]
+        })
 )}
 
 parseResults(data){
+
   let listResult = data.list[0],
       weather=data.list[0].weather[0]
   return {
     city: data.city.name, 
-    coordinates: data.city.coord, 
+    lat:data.city.coord.lat,
+    lon: data.city.coord.lon, 
     country:data.city.country,
-    could: listResult.coulds?listResult.coulds : 'not available' ,
+    could: listResult.coulds? listResult.coulds : 'not available' ,
     deg: listResult.deg,
     humidity: listResult.humidity,
-    rain:listResult.rain,
+    rain:listResult.rain? listResult.rain : 'not available',
     description: weather.description,
-      icon: weather.icon
+    icon: weather.icon
   }
 }
 modeChange(mode){
@@ -52,7 +54,6 @@ handleChange(e){
   let target = e.target,
   value= target.value,
   name =target.name
-  console.log(value);
   this.setState({
     [name]:value
   })
