@@ -1,34 +1,52 @@
 
+.App{
+  display: grid;
+  grid-template-rows: 20rem 20rem 20rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "header middle1 header2"
+  "side center side2"
+  "footer footer footer";
+}
 
-.App {
+.container{
+grid-area: middle1;
+}
+
+input{
+  margin-top: 2rem;
   text-align: center;
-}
+  outline: none;
+  height: 3rem;
+  width: 12rem;
+  border: linear-gradient(21deg, #10abff, #1beabd);
+  border-radius: 9999em;
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
 }
+input:hover{
+  color:#1beabd;
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+}
+button{
+  margin-left: .5rem;
+  height: 2rem;
+  width: 5rem;
+  background: #000;
   color: white;
+  border: none;
 }
 
-.App-link {
-  color: #61dafb;
+.weather-item{
+
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.weather-item img{
+  height: 5rem;
+  height:5rem;
+}
+@media only screen and ( max-width: 480px){
+  button{
+    margin-top: 0.9rem;
+    margin-left: 3.9rem;
   }
 }

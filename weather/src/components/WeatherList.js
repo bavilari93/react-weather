@@ -2,10 +2,7 @@ import React, {Component} from 'react';
 import WeatherItem from './WeatherItem';
 class WeatherList extends Component{
 	renderWeather(data){
-		console.log(data[0])
 		return data.map((e, index) =>{
-			console.log(e.city, index);
-			console.log("https://www.google.com/maps/embed/v1/place?key=AIzaSyBamVRahAneL2IwgWRAiZ0e2vgWamP7an4&q=" + e.lat + "," + e.lon);
 			return(
 				<div key={index}>
 				<WeatherItem
@@ -30,7 +27,7 @@ class WeatherList extends Component{
 	}
 	render(){
 		return(
-			<div>weather List
+			<div>
 				{this.renderWeather(this.props.weatherResults)}
 			</div>)
 	}
